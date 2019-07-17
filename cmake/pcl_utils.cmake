@@ -90,11 +90,12 @@ endmacro()
 # Sets INCLUDE_INSTALL_DIR. Install include files here, preferably in a
 # subdirectory named after the library in question (e.g.
 # "registration/blorgle.h")
+option(USE_VERSIONED_PCL_INCLUDE_DIR "Use a versioned directory version for includes" OFF)
 macro(SET_INSTALL_DIRS)
   if(NOT DEFINED LIB_INSTALL_DIR)
     set(LIB_INSTALL_DIR "lib")
   endif()
-    if(NOT ANDROID)
+    if(NOT ANDROID AND USE_VERSIONED_PCL_INCLUDE_DIR)
       set(INCLUDE_INSTALL_ROOT
           "include/${PROJECT_NAME_LOWER}-${PCL_VERSION_MAJOR}.${PCL_VERSION_MINOR}")
     else()
